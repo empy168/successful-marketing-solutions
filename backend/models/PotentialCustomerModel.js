@@ -16,11 +16,24 @@ const potentialCustomerSchema = new mongoose.Schema({
         required: true,
         trim: true
     },
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        match: [/.+\@.+\..+/, 'Please fill a valid email address']
+    },
     textField: { // This could be notes or any other additional text.
         type: String,
+        require: true,
         trim: true
     },
-    // ... Add any other fields as needed
+    date:{
+        type: Date,
+        default: Date.now
+    },
+},
+{
+    timestamps: true
 });
 
 const PotentialCustomer = mongoose.model('PotentialCustomer', potentialCustomerSchema);

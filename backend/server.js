@@ -22,6 +22,9 @@ app.use(express.json());
 const potentialCustomerRoutes = require('./routes/potentialCustomerRoutes');
 app.use('/api/potentialCustomers', potentialCustomerRoutes);
 
+const adminRoutes = require('./routes/adminRoutes');
+app.use('/admin', adminRoutes);
+
 //non-existing routes
 app.use((req, res, next) => {
   next(new CustomError('HTTP Route Not Found', 404));
@@ -45,4 +48,4 @@ app.listen(PORT, () => {
 });
 
 // Make sure to import the CustomError class
-const CustomError = require('./utilities/customError.js'); // Adjust the path to where your CustomError.js file is located
+const CustomError = require('./utilities/customError.js');
