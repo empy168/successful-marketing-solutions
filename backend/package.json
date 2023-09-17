@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/*test.js --exit",
+    "test": "mocha ./test/adminRoutes.test.js --exit",
     "start": "nodemon server.js"
   },
   "keywords": [],

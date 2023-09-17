@@ -5,10 +5,10 @@ require('dotenv').config();
 const express = require('express');
 
 // Import database configuration
-const dbConfig = require('./backend/config/dbConfig');
+const dbConfig = require('./config/dbConfig.js');
 
 // Import custom error middlewares
-const errorHandler = require('./backend/middlewares/errorHandler');
+const errorHandler = require('./middlewares/errorHandler');
 const CustomError = require('./utilities/customError.js');
 
 // Import routes modules
@@ -18,16 +18,13 @@ const potentialCustomerRoutes = require('./routes/potentialCustomerRoutes');
 // Initialize Express app
 const app = express();
 
-// Retrieve PORT from environment variables
-const PORT = process.env.PORT;
-
 // Root route which responds with a greeting message
 app.get('/', (req, res) => {
   res.send('Hello from Express!');
 });
 
 // Invoke database configuration
-dbConfig();
+dbConfig.connectDB();
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -56,6 +53,12 @@ app.use((err, req, res, next) => {
 });
 
 // Start the server and log the port it is running on
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+if (require.main === module) {
+  // This means the script is being executed directly, so we start the server
+  const PORT = process.env.PORT;
+  app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+  });
+}
+
+module.exports = app;

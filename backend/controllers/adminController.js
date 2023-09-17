@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/UserModel');
 const CustomError = require('../utilities/customError');
-const transporter = require('../nodemailerConfig'); // Importing the nodemailer transporter
+const transporter = require('../config/nodemailerConfig.js'); // Importing the nodemailer transporter
 
 // Function to create a new user and send a setup link via email
 exports.createUser = async (req, res, next) => {

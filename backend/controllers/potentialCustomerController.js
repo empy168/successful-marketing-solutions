@@ -2,15 +2,6 @@ const transporter = require('../config/nodemailerConfig');
 const PotentialCustomer = require('../models/PotentialCustomerModel');
 const CustomError = require('../utilities/customError');
 
-// Initialize nodemailer transporter to handle email sending
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER, // This should be the email address you use to send emails
-    pass: process.env.EMAIL_PASS, // This should be the password for the email address you are using to send emails
-  },
-});
-
 // Function to get all potential customers from the database
 exports.getAllPotentialCustomers = async (req, res, next) => {
   try {
